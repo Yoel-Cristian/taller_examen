@@ -27,6 +27,7 @@
       <label for="descripcion_categoria">Descripción:</label>
       <textarea name="descripcion" id="descripcion"></textarea><br />
       <button type="submit">Enviar</button>
+      <!-- <button onclick="terminar()">Terminar Registro</button> -->
     </form>
   </div>
 
@@ -102,8 +103,8 @@
 
   <iframe id="miFrame" src="" style="display: none; width: 100%"></iframe>
   <div id="popup" class="popup">
-    <div class="popup-content">
-      <p> Tarea realizada correctamente</p>
+  <div class="popup-content">
+        <p> Tarea ejecutada con éxito  <span class="emoji">&#128578;</span></p>
     </div>
   </div>
 
@@ -114,6 +115,7 @@
   <script src="../css/opcion.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
+
     $(document).ready(function() {
       $("#1").submit(function(event) {
         event.preventDefault();
@@ -138,6 +140,7 @@
               $("#popup").fadeOut();
             }, 2000);
             $("#1")[0].reset();
+            
           },
         });
       });
@@ -145,7 +148,6 @@
 
     $(document).ready(function() {
       $("#2").submit(function(event) {
-        event.preventDefault();
         var id = $("#id").val();
         var nombre = $("#nombre1").val();
         var descripcion = $("#descripcion1").val();
@@ -162,13 +164,13 @@
           url: "actualizar_categoria.php",
           data: datos,
           success: function(response) {
-            // Muestra la ventana emergente
             $("#popup").fadeIn();
-            // Cierra la ventana emergente
             setTimeout(function() {
               $("#popup").fadeOut();
             }, 2000);
             $("#2")[0].reset();
+   
+
           },
         });
       });
@@ -176,7 +178,6 @@
 
     $(document).ready(function() {
       $("#3").submit(function(event) {
-        event.preventDefault();
         var id = $("#id1").val();
         var datos = {
           id: id
@@ -195,7 +196,6 @@
               $("#popup").fadeOut();
             }, 2000);
             $("#3")[0].reset();
-
           },
         });
       });

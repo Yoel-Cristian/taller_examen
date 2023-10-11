@@ -2,8 +2,7 @@ function mostrar_formulario(divId) {
   // Obtén todos los elementos con la clase común a los divs
   var elementos = document.querySelectorAll(".Formulario");
   document.getElementById("miFrame").style.display = "none";
-  window.location.href = 'interfaz_producto.php';
-  window.open("interfaz_producto.php", "_self");
+  mostrar_formulario(divId);
 
 
   elementos.forEach(function (elemento) {
@@ -21,6 +20,7 @@ function mostrar_formulario(divId) {
 }
 
 function cargarNuevaPagina(r) {
+
 
   var elementos = document.querySelectorAll(".Formulario");
 

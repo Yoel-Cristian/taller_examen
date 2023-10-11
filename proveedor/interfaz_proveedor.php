@@ -45,7 +45,7 @@
       <label for="id_proveedor">Seleccionar Proveedor:</label>
       <select id="id_proveedor1" name="id_proveedor" class="select">
         <option selected disabled class="option-default">
-          [ID] - [nombre] - [direccion] - [contacto] 
+          [ID] - [nombre] - [direccion] - [contacto]
         </option>
         <?php
         $conexion = new mysqli("localhost", "root", "", "sistema");
@@ -85,7 +85,7 @@
       <label for="id_proveedor">Seleccionar Proveedor:</label>
       <select id="id_proveedor2" name="id_proveedor" class="select">
         <option selected disabled class="option-default">
-          [id] - [nombre] - [direccion] - [contacto] 
+          [id] - [nombre] - [direccion] - [contacto]
         </option>
         <?php
         $conexion = new mysqli("localhost", "root", "", "sistema");
@@ -112,9 +112,9 @@
 
   <!-- alert -->
   <div id="popup" class="popup">
-  <div class="popup-content">
-    <p> Tarea realizada correctamente</p>
-  </div>
+    <div class="popup-content">
+      <p> Tarea realizada correctamente</p>
+    </div>
   </div>
 
   <script src="../css/opcion.js"> </script>
@@ -132,7 +132,7 @@
           nombre: nombre,
           direccion: direccion,
           telefono: telefono
-                };
+        };
 
         console.log(datos);
         $.ajax({
@@ -166,9 +166,9 @@
           nombre: nombre,
           direccion: direccion,
           telefono: telefono
-        
+
         };
-console.log(datos);
+        console.log(datos);
         $.ajax({
           type: "POST",
           url: "actualizar_proveedor.php",
@@ -188,12 +188,13 @@ console.log(datos);
 
     $(document).ready(function() {
       $("#3").submit(function(event) {
-        var id = $("#id_producto2").val();
+
+        var id = $("#id_proveedor2").val();
         var datos = {
-          id: id
+          id_proveedor: id
         }; // Debe ser un objeto con una clave "id"
 
-
+        console.log(datos);
         $.ajax({
           type: "POST",
           url: "proveedor_delete.php",
@@ -206,7 +207,7 @@ console.log(datos);
               $("#popup").fadeOut();
             }, 2000);
             $("#3")[0].reset();
-
+           
           },
         });
       });
