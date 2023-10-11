@@ -14,7 +14,7 @@
       <li onclick="mostrar_formulario('insertar')">Añadir</li>
       <li onclick="cargarNuevaPagina('mostrar_inventario.php')">Mostrar inventarios</li>
       <li onclick="mostrar_formulario('actualizar')">Actualizar</li>
-      <li onclick="mostrar_formulario('eliminar')">Eliminar</li> 
+      <li onclick="mostrar_formulario('eliminar')">Eliminar</li>
     </ul>
   </nav>
 
@@ -26,35 +26,35 @@
 
 
       <label for="id_producto">Seleccionar Producto:</label>
-        <select id="id_producto" name="id_producto" class="select">
-          <option selected disabled class="option-default">
-            [id] -
-            [nombre] -
-            [precio] 
+      <select id="id_producto" name="id_producto" class="select">
+        <option selected disabled class="option-default">
+          [id] -
+          [nombre] -
+          [precio]
 
-          </option>
-          <?php
-          $conexion = new mysqli("localhost", "root", "", "sistema");
-          $consulta = "SELECT id,
+        </option>
+        <?php
+        $conexion = new mysqli("localhost", "root", "", "sistema");
+        $consulta = "SELECT id,
           nombre,
           precio FROM productos";
-          $resultado = $conexion->query($consulta);
+        $resultado = $conexion->query($consulta);
 
-          while ($fila = $resultado->fetch_assoc()) {
-            $id = $fila['id'];
-            $nombre = $fila['nombre'];
-            $precio = $fila['precio'];
+        while ($fila = $resultado->fetch_assoc()) {
+          $id = $fila['id'];
+          $nombre = $fila['nombre'];
+          $precio = $fila['precio'];
 
-            echo "<option value='$id'>[$id] - [$nombre] - [$precio] </option>";
-          }
-          $conexion->close();
-          ?>
-        </select><br /><br />
+          echo "<option value='$id'>[$id] - [$nombre] - [$precio] </option>";
+        }
+        $conexion->close();
+        ?>
+      </select><br /><br />
 
-        <label for="rut_tienda">direccion Tienda:</label>
+      <label for="rut_tienda">direccion Tienda:</label>
       <select id="rut_tienda" name="rut_tienda">
         <option selected disabled class="option-default">
-          [id] - [nombre] - [direccion] 
+          [id] - [nombre] - [direccion]
         </option>
         <?php
         $conexion = new mysqli("localhost", "root", "", "sistema");
@@ -66,23 +66,22 @@
           $nombre = $fila['nombre'];
           $direccion = $fila['direccion'];
           echo "<option value='$rut'>[$rut] - [$nombre] - [$direccion] </option>";
-
         }
         $conexion->close();
         ?>
       </select><br /><br />
 
 
-        <label for="stock">Stock:</label>
+      <label for="stock">Stock:</label>
       <input type="number" name="stock" id="stock" min="0" /><br />
 
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha" name="fecha" /><br /><br />
 
-      <input type="submit" id="miBoton" value="Agregar Lista de Productos" />
-    </form>
+      <input type="submit" value="Guardar" />
+        </form>
 
-</div>
+  </div>
 
 
 
@@ -98,17 +97,45 @@
       <label for="id_inventario">Seleccionar inventario:</label>
       <select id="id_inventario1" name="id_inventario" class="select">
         <option selected disabled class="option-default">
-          [ID] - [ID_producto] - [ID_tienda] 
+          [ID] - [ID_producto] - [ID_tienda]
+          <?php
+          $conexion = new mysqli("localhost", "root", "", "sistema");
+          $consulta = "SELECT id, id_producto, id_ubi FROM inventario";
+          $resultado = $conexion->query($consulta);
+
+          while ($fila = $resultado->fetch_assoc()) {
+            $id_inventario = $fila["id"];
+            $id_p = $fila["id_producto"];
+            $id_u = $fila["id_ubi"];
+            echo "<option value='$id_inventario'> [$id_inventario] - [$id_p] - [$id_u]</option>";
+          }
+          $conexion->close();
+          ?>
+      </select><br /><br />
+
+
+
+      <label for="id_producto">Seleccionar Producto:</label>
+      <select id="id_producto1" name="id_producto" class="select">
+        <option selected disabled class="option-default">
+          [id] -
+          [nombre] -
+          [precio]
+
+        </option>
         <?php
         $conexion = new mysqli("localhost", "root", "", "sistema");
-        $consulta = "SELECT id, id_producto, id_ubi FROM inventarios";
+        $consulta = "SELECT id,
+          nombre,
+          precio FROM productos";
         $resultado = $conexion->query($consulta);
 
         while ($fila = $resultado->fetch_assoc()) {
-          $id_inventario = $fila["id"];
-          $id_p = $fila["id_producto"];
-          $id_ = $fila["id_ubi"];
-          echo "<option value='$id_inventario'> [$id_inventario] - [$fecha_inventario] - [$rut_tienda] - [$descuento] - [$monto_final] </option>";
+          $id = $fila['id'];
+          $nombre = $fila['nombre'];
+          $precio = $fila['precio'];
+
+          echo "<option value='$id'>[$id] - [$nombre] - [$precio] </option>";
         }
         $conexion->close();
         ?>
@@ -117,31 +144,33 @@
       <label for="fecha">Fecha:</label>
       <input type="date" id="fecha1" name="fecha" /><br /><br />
 
+
+      <label for="stock">Stock:</label>
+      <input type="number" name="stock" id="stock1" min="0" /><br />
+
       <label for="id_tienda">Seleccionar tienda:</label>
       <select id="rut_tienda1" name="id_tienda" class="select">
         <option selected disabled class="option-default">
-          [rut] - [nombre] - [direccion] - [telefono]
+          [id] - [nombre] - [direccion]
         </option>
         <?php
         $conexion = new mysqli("localhost", "root", "", "sistema");
-        $consulta = "SELECT rut, nombre, direccion, telefono FROM tiendas";
+        $consulta = "SELECT id, nombre, direccion FROM tiendas";
         $resultado = $conexion->query($consulta);
 
         while ($fila = $resultado->fetch_assoc()) {
-          $rut = $fila['rut'];
+          $rut = $fila['id'];
           $nombre = $fila['nombre'];
           $direccion = $fila['direccion'];
-          $telefono = $fila['telefono'];
-
-          echo "<option value='$rut'>[$rut] - [$nombre] - [$direccion] - [$telefono]</option>";
+          echo "<option value='$rut'>[$rut] - [$nombre] - [$direccion] </option>";
         }
         $conexion->close();
         ?>
       </select><br /><br />
-      <label for="descuento">Descuento (%):</label>
-      <input type="number" id="descuento1" name="descuento" step="0.01" /><br /><br />
 
-    
+
+
+
       <input type="submit" value="Guardar" />
     </form>
   </div>
@@ -153,74 +182,72 @@
     <h2>eliminar inventario</h2>
 
     <form id="3">
-      <label for="id_inventario2">Seleccionar inventario:</label>
-      <select id="id_inventario2" name="id_inventario" class="select">
+      <label for="id_inventario">Seleccionar inventario:</label>
+      <select id="id_inventario1" name="id_inventario" class="select">
         <option selected disabled class="option-default">
-          [ID] - [Fecha] - [tienda] - [Descuento] - [Monto Final]
-        </option>
-        <?php
-        $conexion = new mysqli("localhost", "root", "", "sistema");
-        $consulta = "SELECT id, fecha, rut_tienda, descuento, monto_final FROM inventarios";
-        $resultado = $conexion->query($consulta);
+          [ID] - [ID_producto] - [ID_tienda]
+          
+          <?php
+          $conexion = new mysqli("localhost", "root", "", "sistema");
+          $consulta = "SELECT id, id_producto, id_ubi FROM inventario";
+          $resultado = $conexion->query($consulta);
 
-        while ($fila = $resultado->fetch_assoc()) {
-          $id_inventario = $fila["id"];
-          $fecha_inventario = $fila["fecha"];
-          $rut_tienda = $fila["rut_tienda"];
-          $descuento = $fila["descuento"];
-          $monto_final = $fila["monto_final"];
+          while ($fila = $resultado->fetch_assoc()) {
+            $id_inventario = $fila["id"];
+            $id_p = $fila["id_producto"];
+            $id_u = $fila["id_ubi"];
+            echo "<option value='$id_inventario'> [$id_inventario] - [$id_p] - [$id_u]</option>";
+          }
+          $conexion->close();
+          ?> 
 
-          echo "<option value='$id_inventario'> [$id_inventario] - [$fecha_inventario] - [$rut_tienda] - [$descuento] - [$monto_final] </option>";
-        }
-        $conexion->close();
-        ?>
+
       </select><br /><br />
+
       <button type="submit">Enviar</button>
     </form>
   </div>
 
   <!-- inventariona -->
   <div id="popup" class="popup">
-    <div class="popup-content">
-      <p> Tarea realizada correctamente</p>
-    </div>
+  <div class="popup-content">
+        <p> Tarea ejecutada con éxito  <span class="emoji">&#128578;</span></p>
+    </div
   </div>
 
   <iframe id="miFrame" src="" style="display: none; width: 100%"></iframe>
 
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../css/detalle_inventarios.js"></script>
-  <script src="opcion.js"></script>
+  <script src="../css/opcion.js"></script>
   <script>
-       
- 
-
-     $(document).ready(function() {
+    $(document).ready(function() {
       $("#1").submit(function(event) {
         event.preventDefault();
-        document.getElementById("miBoton").style.display = "none";
-        var fecha = $("#fecha").val();
+        var id_producto = $("#id_producto").val();
         var rut_tienda = $("#rut_tienda").val();
-        var descuento = $("#descuento").val();
-        var monto_final = $("#monto_final").val();
-
+        var stock = $("#stock").val();
+        var fecha= $("#fecha").val();
         var datos = {
-          fecha: fecha,
+          id_producto: id_producto,
           rut_tienda: rut_tienda,
-          descuento: descuento,
-          monto_final: monto_final
+          stock: stock,
+          fecha: fecha
         };
-
+console.log(datos);
         $.ajax({
           type: "POST",
           url: "insertar_inventario.php", // Actualiza la URL según tu archivo PHP
           data: datos,
           success: function(response) {
-           
+            $("#popup").fadeIn();
+            // Cierra la ventana emergente 
+            setTimeout(function() {
+              $("#popup").fadeOut();
+            }, 2000);
+            $("#1")[0].reset();
           },
         });
-        cargarNuevaPagina("../inventario_detalle copy/interfaz_detalle.php");
       });
     });
 
@@ -260,7 +287,7 @@
         });
       });
     });
-    
+
 
     $(document).ready(function() {
       $("#3").submit(function(event) {
@@ -287,12 +314,6 @@
         });
       });
     });
-
-
-
-
-
-
   </script>
 
 

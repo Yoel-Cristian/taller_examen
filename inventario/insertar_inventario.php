@@ -3,30 +3,23 @@
 
 $conexion = new mysqli("localhost", "root", "", "sistema");
 
-
+$id_p = mysqli_real_escape_string($conexion, $_POST["id_producto"]);
+$rut_tienda = mysqli_real_escape_string($conexion, $_POST["rut_tienda"]);
+$stock = mysqli_real_escape_string($conexion, $_POST["stock"]);
 $fecha = mysqli_real_escape_string($conexion, $_POST["fecha"]);
-$rut_cliente = mysqli_real_escape_string($conexion, $_POST["rut_cliente"]);
-$descuento = mysqli_real_escape_string($conexion, $_POST["descuento"]);
-$monto_final = mysqli_real_escape_string($conexion, $_POST["monto_final"]);
 
-if ($fecha and $rut_cliente and $descuento and $monto_final != "") {
 
-    $sql = "INSERT INTO ventas(fecha	,rut_cliente,	descuento,	monto_final	
-    ) VALUES ('$fecha', '$rut_cliente', '$descuento', '$monto_final')";
+
+    $sql = "INSERT INTO inventario(id_producto	,id_ubi,	nivex,	ultac	
+    ) VALUES ('$id_p', '$rut_tienda', '$stock', '$fecha')";
 
     $conexion->query($sql);
     $conexion->close();
 
-    header("Location: ../venta_detalle copy/interfaz_detalle.php");
     $conexion->close();
     exit;
 
 
-} else {
-    // echo '<script>alert("No se han introducido todos los datos");</script>';
-    // header("Location: interfaz.html");
-    exit;
-}
 
 
 ?>
