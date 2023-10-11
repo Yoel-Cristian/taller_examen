@@ -3,7 +3,7 @@ $conexion = new mysqli("localhost", "root", "", "sistema");
 
 $id= mysqli_real_escape_string($conexion, $_POST["id"]);
 if ($id != "") {
-    $update_query = " DELETE FROM clientes WHERE rut='$id'";
+    $update_query = " DELETE FROM tiendas WHERE id='$id'";
     
     if ($conexion->query($update_query)) {
         echo 'Tupla eliminada  exitosamente.';

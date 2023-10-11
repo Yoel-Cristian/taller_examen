@@ -7,7 +7,6 @@ $conexion = new mysqli("localhost", "root", "", "sistema");
 $nombre_p =       mysqli_real_escape_string($conexion, $_POST["nombre"]);
 $desc=       mysqli_real_escape_string($conexion, $_POST["descripcion"]);
 $precio =       mysqli_real_escape_string($conexion, $_POST["precio"]);
-$stock =        mysqli_real_escape_string($conexion, $_POST["stock"]);
 $rut_proveedor = mysqli_real_escape_string($conexion, $_POST["rut_proveedor"]);
 $id_categoria = mysqli_real_escape_string($conexion, $_POST["id_categoria"]);
 
@@ -28,6 +27,6 @@ $imagen = "../fotos/" . $nombre;
 
 
 
-$sql = "INSERT INTO productos(nombre,descripcion,precio,stock,id_proveedor, id_categoria, imagen) VALUES ('$nombre_p', '$desc', '$precio', '$stock', '$rut_proveedor','$id_categoria', '$imagen')";
+$sql = "INSERT INTO productos(nombre,descripcion,precio,id_proveedor, id_categoria, imagen) VALUES ('$nombre_p', '$desc', '$precio', '$rut_proveedor','$id_categoria', '$imagen')";
 $conexion->query($sql);
 $conexion->close();

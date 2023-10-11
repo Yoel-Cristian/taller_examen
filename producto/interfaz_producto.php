@@ -80,9 +80,6 @@
       </select><br /><br />
 
 
-      <label for="stock">Stock:</label>
-      <input type="number" name="stock" id="stock" min="0" /><br />
-
       <label for="imagen">Imagen:</label>
       <input type="file" name="imagen" id="imagen" accept="image/*" /><br /><br />
 
@@ -142,8 +139,6 @@
       <label for="precio">Precio ($):</label>
       <input type="number" step="0.01" name="precio" id="precio1" /><br />
 
-      <label for="stock">Stock:</label>
-      <input type="number" name="stock" id="stock1" min="0" /><br />
 
       <label for="rut_proveedor">ID Proveedor:</label>
       <select id="rut_proveedor1" name="rut_proveedor" class="select">

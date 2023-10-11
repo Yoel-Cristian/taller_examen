@@ -5,11 +5,10 @@ $conexion = new mysqli("localhost", "root", "", "sistema");
 
 $nombre = mysqli_real_escape_string($conexion, $_POST["nombre"]);
 $direccion = mysqli_real_escape_string($conexion, $_POST["direccion"]);
-$telefono = mysqli_real_escape_string($conexion, $_POST["telefono"]);
 
-if ($nombre and $direccion and $telefono  != "") {
+if ($nombre and $direccion  != "") {
 
-    $sql = "INSERT INTO clientes(nombre,	direccion,	telefono) VALUES ('$nombre', '$direccion', '$telefono')";
+    $sql = "INSERT INTO tiendas(nombre,	direccion) VALUES ('$nombre', '$direccion')";
 
     $conexion->query($sql);
     $conexion->close();
@@ -19,6 +18,3 @@ if ($nombre and $direccion and $telefono  != "") {
     // header("Location: interfaz.html");
     exit;
 }
-
-
-?>
